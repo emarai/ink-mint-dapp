@@ -24,6 +24,7 @@ export const fetchData = () => {
   return async (dispatch) => {
     dispatch(fetchDataRequest());
     try {
+      console.log("fetching data...")
       let blockchain = store.getState().blockchain
       let userAddress = blockchain?.account.address;
       let gasRequired = await blockchain?.api.consts.system.blockWeights['maxBlock']
@@ -34,8 +35,8 @@ export const fetchData = () => {
             gasLimit: blockchain.api.registry.createType('WeightV2', gasRequired),
           }
         )
-        console.log("fetchData, totalSupply=", output?.toString())
-        const totalSupply = output?.toString()
+        console.log("fetchData, totalSupply=", output?.toString(), output?.toHuman())
+        const totalSupply = output?.toHuman().Ok
 
         // Update state
         dispatch(

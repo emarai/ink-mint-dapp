@@ -1,19 +1,17 @@
 {
-  "CONTRACT_ADDRESS": "b8QeEr72aJQKfaXcEDGwB5iwqGuF1b9oysHtj3nwMsdmgHa",
-  "SCAN_LINK": "https://shiden.subscan.io/account/b8QeEr72aJQKfaXcEDGwB5iwqGuF1b9oysHtj3nwMsdmgHa",
+  "CONTRACT_ADDRESS": "ZX9yQ328xhNhjUMcekfSVbmQahgM7oNRyMj1BQWihvyGdPu",
+  "SCAN_LINK": "https://shibuya.subscan.io/account/ZX9yQ328xhNhjUMcekfSVbmQahgM7oNRyMj1BQWihvyGdPu",
   "NETWORK": {
-    "NAME": "Shiden",
-    "SYMBOL": "SDN",
-    "ID": 137
+    "NAME": "Shibuya",
+    "SYMBOL": "SBY",
+    "ID": 81
   },
-  "NFT_NAME": "Shiden34",
-  "SYMBOL": "Test34",
-  "MAX_SUPPLY": 100,
+  "NFT_NAME": "Bebot",
+  "SYMBOL": "BB",
+  "MAX_SUPPLY": 10000,
   "WEI_COST": "10000000000000000",
-  "DISPLAY_COST": 1,
-  "GAS_LIMIT": 285000,
+  "DISPLAY_COST": 0.01,
   "MARKETPLACE": "SubWallet",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/nerdy-coder-clones",
-  "SHOW_BACKGROUND": true,
-  "WS_PROVIDER": "wss://rpc.shiden.astar.network"
+  "MARKETPLACE_LINK": "https://",
+  "WS_PROVIDER": "wss://rpc.shibuya.astar.network"
 }
