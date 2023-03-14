@@ -36,7 +36,7 @@ export const fetchData = () => {
           }
         )
         console.log("fetchData, totalSupply=", output?.toString(), output?.toHuman())
-        const totalSupply = output?.toHuman().Ok
+        const totalSupply = output?.toHuman()
 
         // Update state
         dispatch(
