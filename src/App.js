@@ -6,94 +6,93 @@ import * as s from "./styles/globalStyles";
 import styled from "styled-components";
 import BN from "bn.js";
 
-
 const truncate = (input, len) =>
   input.length > len ? `${input.substring(0, len)}...` : input;
 
 export const StyledButton = styled.button`
-padding: 10px;
-border-radius: 50px;
-border: none;
-background-color: var(--secondary);
-padding: 10px;
-font-weight: bold;
-color: var(--secondary-text);
-width: 100px;
-cursor: pointer;
-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
--webkit-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
--moz-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
-:active {
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-}
+  padding: 10px;
+  border-radius: 50px;
+  border: none;
+  background-color: var(--secondary);
+  padding: 10px;
+  font-weight: bold;
+  color: var(--secondary-text);
+  width: 100px;
+  cursor: pointer;
+  box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
+  -webkit-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
+  -moz-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
+  :active {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+  }
 `;
 
 export const StyledRoundButton = styled.button`
-padding: 10px;
-border-radius: 100%;
-border: none;
-background-color: var(--primary);
-padding: 10px;
-font-weight: bold;
-font-size: 15px;
-color: var(--primary-text);
-width: 30px;
-height: 30px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);
--webkit-box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);
--moz-box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);
-:active {
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-}
+  padding: 10px;
+  border-radius: 100%;
+  border: none;
+  background-color: var(--primary);
+  padding: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  color: var(--primary-text);
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);
+  -webkit-box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);
+  -moz-box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);
+  :active {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+  }
 `;
 
 export const ResponsiveWrapper = styled.div`
-display: flex;
-flex: 1;
-flex-direction: column;
-justify-content: stretched;
-align-items: stretched;
-width: 100%;
-@media (min-width: 767px) {
-  flex-direction: row;
-}
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: stretched;
+  align-items: stretched;
+  width: 100%;
+  @media (min-width: 767px) {
+    flex-direction: row;
+  }
 `;
 
 export const StyledLogo = styled.img`
-width: 200px;
-@media (min-width: 767px) {
-  width: 300px;
-}
-transition: width 0.5s;
-transition: height 0.5s;
+  width: 200px;
+  @media (min-width: 767px) {
+    width: 300px;
+  }
+  transition: width 0.5s;
+  transition: height 0.5s;
 `;
 
 export const StyledImg = styled.img`
-box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);
-border: 4px dashed var(--secondary);
-background-color: var(--accent);
-border-radius: 100%;
-width: 200px;
-@media (min-width: 900px) {
-  width: 250px;
-}
-@media (min-width: 1000px) {
-  width: 300px;
-}
-transition: width 0.5s;
+  box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);
+  border: 4px dashed var(--secondary);
+  background-color: var(--accent);
+  border-radius: 100%;
+  width: 200px;
+  @media (min-width: 900px) {
+    width: 250px;
+  }
+  @media (min-width: 1000px) {
+    width: 300px;
+  }
+  transition: width 0.5s;
 `;
 
 export const StyledLink = styled.a`
-color: var(--secondary);
-text-decoration: none;
+  color: var(--secondary);
+  text-decoration: none;
 `;
 
 // good ref : https://github.com/Koniverse/SubWallet-Extension/pull/698/files
@@ -124,64 +123,85 @@ function App() {
   });
 
   const claimNFTs = async () => {
-    const mintValue = new BN(CONFIG.WEI_COST)
-    // let totalCostWei = String(cost * mintAmount);
-    // let totalGasLimit = String(gasLimit * mintAmount);
-    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
-    setClaimingNft(true);
+    try {
+      const mintValue = new BN(CONFIG.WEI_COST);
+      // let totalCostWei = String(cost * mintAmount);
+      // let totalGasLimit = String(gasLimit * mintAmount);
+      setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+      setClaimingNft(true);
 
-    if (blockchain.smartContract !== undefined) {
-      console.log("gas limit max", getGasMaxLimit().toHuman())
-      const { gasRequired, storageDeposit, result: qResult } = await blockchain.smartContract.query['payableMint::mintNext'](
-        blockchain.account.address,
-        {
-          gasLimit: getGasMaxLimit(),
-          storageDepositLimit: null,
-          value: mintValue,
-        }
-      )
-      console.log("mintNext query result", qResult.toString())
-      console.log("mint gasRequired", gasRequired.toString())
-      console.log("storageDeposit", storageDeposit.toString())
+      if (blockchain.smartContract !== undefined) {
+        console.log("gas limit max", getGasMaxLimit().toHuman());
+        console.log(blockchain.account.address, mintAmount);
+        const {
+          gasRequired,
+          storageDeposit,
+          result: qResult,
+        } = await blockchain.smartContract.query["payableMint::mint"](
+          blockchain.account.address,
+          {
+            gasLimit: getGasMaxLimit(),
+            storageDepositLimit: null,
+            value: mintValue.mul(new BN(mintAmount)),
+          },
+          blockchain.account.address,
+          mintAmount
+        );
+        console.log("mintNext query result", qResult.toString());
+        console.log("mint gasRequired", gasRequired.toString());
+        console.log("storageDeposit", storageDeposit.toString());
 
-      const { gasConsumed, result: txResult } = await blockchain.smartContract.tx['payableMint::mintNext'](
-        {
-          value: mintValue,
-          gasLimit: blockchain.api.registry.createType('WeightV2',
-            gasRequired
-          ),
-          storageDepositLimit: null,
-        }
-      ).
-        signAndSend(blockchain.account.address, { signer: blockchain.signer }, (result) => {
-          console.log('signAndSend status:', result.status.toString());
-          if (result.status.isInBlock) {
-            setClaimingNft(false);
-            if (result.dispatchError !== undefined) {
-              console.log('signAndSend dispatchError:', result.dispatchError);
-              console.log('signAndSend dispatchInfo:', result.dispatchInfo);
-              setFeedback(
-                'failed to mint error: ' + result.dispatchError
-              );
-            } else {
-
-              dispatch(fetchData(blockchain.account));
-              setFeedback(
-                `WOW, the ${CONFIG.NFT_NAME} is yours! Go open SubWallet to view it.`
-              );
-              console.log('signAndSend result:', result.toHuman());
-              console.log('signAndSend gasConsumed:', result.dispatchInfo.weight.toHuman());
+        const { gasConsumed, result: txResult } =
+          await blockchain.smartContract.tx["payableMint::mint"](
+            {
+              value: mintValue.mul(new BN(mintAmount)),
+              gasLimit: blockchain.api.registry.createType(
+                "WeightV2",
+                gasRequired
+              ),
+              storageDepositLimit: null,
+            },
+            blockchain.account.address,
+            mintAmount
+          ).signAndSend(
+            blockchain.account.address,
+            { signer: blockchain.signer },
+            (result) => {
+              console.log("signAndSend status:", result.status.toString());
+              if (result.status.isInBlock) {
+                setClaimingNft(false);
+                if (result.dispatchError !== undefined) {
+                  console.log(
+                    "signAndSend dispatchError:",
+                    result.dispatchError
+                  );
+                  console.log("signAndSend dispatchInfo:", result.dispatchInfo);
+                  setFeedback("failed to mint error: " + result.dispatchError);
+                } else {
+                  dispatch(fetchData(blockchain.account));
+                  setFeedback(
+                    `WOW, the ${CONFIG.NFT_NAME} is yours! Go open SubWallet to view it.`
+                  );
+                  console.log("signAndSend result:", result.toHuman());
+                  console.log(
+                    "signAndSend gasConsumed:",
+                    result.dispatchInfo.weight.toHuman()
+                  );
+                }
+              }
             }
-          }
-        });
-    };
-  }
+          );
+      }
+    } catch (err) {
+      console.log("error", err);
+    }
+  };
 
   const getGasMaxLimit = () => {
     return blockchain?.api.registry.createType(
-      'WeightV2',
-      blockchain?.api.consts.system.blockWeights['maxBlock']
-    )
+      "WeightV2",
+      blockchain?.api.consts.system.blockWeights["maxBlock"]
+    );
   };
 
   const decrementMintAmount = () => {
@@ -231,13 +251,21 @@ function App() {
         flex={1}
         ai={"center"}
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
-        image={CONFIG.SHOW_BACKGROUND ? "/ink-mint-dapp/config/images/bg.png" : null}
+        image={
+          CONFIG.SHOW_BACKGROUND ? "/ink-mint-dapp/config/images/bg.png" : null
+        }
       >
-        <StyledLogo alt={"logo"} src={"/ink-mint-dapp/config/images/logo.png"} />
+        <StyledLogo
+          alt={"logo"}
+          src={"/ink-mint-dapp/config/images/logo.png"}
+        />
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/ink-mint-dapp/config/images/example.gif"} />
+            <StyledImg
+              alt={"example"}
+              src={"/ink-mint-dapp/config/images/example.gif"}
+            />
           </s.Container>
           <s.SpacerLarge />
           <s.Container
@@ -306,7 +334,7 @@ function App() {
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
-                  blockchain.smartContract === null ? (
+                blockchain.smartContract === null ? (
                   <s.Container ai={"center"} jc={"center"}>
                     <s.TextDescription
                       style={{
@@ -419,8 +447,9 @@ function App() {
             }}
           >
             Please make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME}) and the correct address in your wallet. Please note:
-            Once you make the purchase, you cannot undo this action.
+            {CONFIG.NETWORK.NAME}) and the correct address in your wallet.
+            Please note: Once you make the purchase, you cannot undo this
+            action.
           </s.TextDescription>
           <s.SpacerSmall />
           <s.TextDescription
@@ -428,8 +457,7 @@ function App() {
               textAlign: "center",
               color: "var(--primary-text)",
             }}
-          >
-          </s.TextDescription>
+          ></s.TextDescription>
         </s.Container>
       </s.Container>
     </s.Screen>
