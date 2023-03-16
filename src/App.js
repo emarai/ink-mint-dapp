@@ -167,6 +167,19 @@ function App() {
             blockchain.account.address,
             { signer: blockchain.signer },
             (result) => {
+              if (result.contractEvents)
+              console.log(
+                result.contractEvents.map(({ event, args }) => {
+                  args.map((a, i) => {
+                    if (
+                      event.identifier === "Transfer" &&
+                      event.args[i].name === "id"
+                    ) {
+                      console.log("Token Id: ", a.toHuman()["U64"]);
+                    }
+                  });
+                })
+              );
               console.log("signAndSend status:", result.status.toString());
               if (result.status.isInBlock) {
                 setClaimingNft(false);
