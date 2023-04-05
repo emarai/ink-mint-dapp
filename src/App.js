@@ -151,6 +151,26 @@ function App() {
         console.log("mint gasRequired", gasRequired.toString());
         console.log("storageDeposit", storageDeposit.toString());
 
+        const info = await blockchain.smartContract.tx["payableMint::mint"](
+          {
+            value: mintValue.mul(new BN(mintAmount)),
+            gasLimit: blockchain.api.registry.createType(
+              "WeightV2",
+              gasRequired
+            ),
+            storageDepositLimit: null,
+          },
+          blockchain.account.address,
+          mintAmount
+        ).paymentInfo(blockchain.account.address);
+
+        const storageFee = JSON.parse(storageDeposit.toString()).charge;
+        const gasFee = info.partialFee.toNumber();
+        const estimatedFee = (storageFee + gasFee) * (1 / 10 ** 18);
+        console.log(`Storage fee = ${storageFee} weiSBY`);
+        console.log(`Gas fee = ${gasFee} weiSBY`);
+        console.log(`ESTIMATED FEE = ${estimatedFee} SBY`);
+
         const { gasConsumed, result: txResult } =
           await blockchain.smartContract.tx["payableMint::mint"](
             {
@@ -159,7 +179,7 @@ function App() {
                 "WeightV2",
                 gasRequired
               ),
-              storageDepositLimit: null,
+              storageDepositLimit: storageFee,
             },
             blockchain.account.address,
             mintAmount
@@ -168,18 +188,18 @@ function App() {
             { signer: blockchain.signer },
             (result) => {
               if (result.contractEvents)
-              console.log(
-                result.contractEvents.map(({ event, args }) => {
-                  args.map((a, i) => {
-                    if (
-                      event.identifier === "Transfer" &&
-                      event.args[i].name === "id"
-                    ) {
-                      console.log("Token Id: ", a.toHuman()["U64"]);
-                    }
-                  });
-                })
-              );
+                console.log(
+                  result.contractEvents.map(({ event, args }) => {
+                    args.map((a, i) => {
+                      if (
+                        event.identifier === "Transfer" &&
+                        event.args[i].name === "id"
+                      ) {
+                        console.log("Token Id: ", a.toHuman()["U64"]);
+                      }
+                    });
+                  })
+                );
               console.log("signAndSend status:", result.status.toString());
               if (result.status.isInBlock) {
                 setClaimingNft(false);
